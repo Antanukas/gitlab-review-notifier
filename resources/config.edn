@@ -1,0 +1,7 @@
+{ :new-review-sound "resources/bombpl.mp3"
+  :review-close-to-expire-sound "resources/c4_click.mp3"
+  :review-expired-sound "resources/c4_explode1.mp3"
+  :review-merged "resources/bombdef.mp3"
+  :minutes-after-review-expires 30
+  :minutes-after-review-is-close-to-expire 20
+}
