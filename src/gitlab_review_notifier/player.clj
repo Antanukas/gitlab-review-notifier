@@ -1,11 +1,8 @@
-(ns gitlab-review-notifier.player)
+(ns gitlab-review-notifier.player
+  (:require [clojure.java.io :as io]))
 
-(defn play-file! [filename & opts]
-  (let [fis (java.io.FileInputStream. filename)
-        bis (java.io.BufferedInputStream. fis)
-        player (javazoom.jl.player.Player. bis)]
-    (if-let [synchronously (first opts)]
-      (doto player
-        (.play)
-        (.close))
-      (.start (Thread. #(doto player (.play) (.close)))))))
+(defn play-file! [file-name]
+  (with-open [fis (.openStream (io/resource file-name))
+              bis (java.io.BufferedInputStream. fis)
+              player (javazoom.jl.player.Player. bis)]
+    (.play player)))
