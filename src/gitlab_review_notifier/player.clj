@@ -1,6 +1,6 @@
 (ns gitlab-review-notifier.player)
 
-(defn play-file [filename & opts]
+(defn play-file! [filename & opts]
   (let [fis (java.io.FileInputStream. filename)
         bis (java.io.BufferedInputStream. fis)
         player (javazoom.jl.player.Player. bis)]
