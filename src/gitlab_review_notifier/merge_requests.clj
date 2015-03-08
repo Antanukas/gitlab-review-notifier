@@ -10,12 +10,13 @@
 ;atom to check for new mrs based on previous
 (def prev-merge-request-ids (atom #{}))
 
-
 (defn get-merge-requests []
-  (->> (gitlab/get-projects)
-       (map :id)
-       (map gitlab/get-open-merge-requests)
-       (flatten)))
+  (let [is-project-to-track? (fn [project] (:projects-to-track @ctx/config) (:name project))]
+    (->> (gitlab/get-projects)
+         (filter is-project-to-track?)
+         (map :id)
+         (map gitlab/get-open-merge-requests)
+         (flatten))))
 
 (defn- play-file! [file-path]
   (locking play-monitor ;lock so that multiple sounds won't be played simultaniously
@@ -38,7 +39,8 @@
         expired-mrs (filter pred/is-expired-mr? merge-requests)]
     (if-not (empty? expired-mrs)
       (do
-        (debug "Found" (count expired-mrs) "expired reviews!!!")
+        (info "Found" (count expired-mrs) "expired reviews!!!")
+        (debug "Found reviews: " (clojure.string/join "," (map :title expired-mrs)))
         (play-file! "ALARM.mp3")))
     (debug "Finished check-for-expired-mrs!")))
 

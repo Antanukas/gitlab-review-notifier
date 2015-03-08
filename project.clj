@@ -7,7 +7,8 @@
                  [javazoom/jlayer "1.0.1"]
                  [overtone/at-at "1.2.0"]
                  [clj-time "0.9.0"]
-                 [com.taoensso/timbre "3.4.0"]]
+                 [com.taoensso/timbre "3.4.0"]
+                 [clj-http "1.0.1"]]
   :main ^:skip-aot gitlab-review-notifier.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})

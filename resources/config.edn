@@ -3,4 +3,11 @@
   :new-review-check-interval-sec 10
   :expired-review-check-interval-sec 10
   :config-reload-interval-sec 5
+
+  :projects-to-track #{"CustomerDataServices"}
+
+  :gitlab-url "http://online-tooling.omnitel.lan/"
+  :gitlab-token "rJt6dNGWJ29e9Nfbq2po"
+
+  :log-level :info
 }

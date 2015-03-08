@@ -4,7 +4,7 @@
 
 (defn- is-mr-created-at-after-cofigure? [mr cfg-expire-key]
   (let [expiration-period-minutes (t/minutes (cfg-expire-key @ctx/config))
-        expiration-date (t/plus (:created-at mr) expiration-period-minutes)]
+        expiration-date (t/plus (:created_at mr) expiration-period-minutes)]
     (t/after? (t/now) expiration-date)))
 
 ;Predicates to check review request
