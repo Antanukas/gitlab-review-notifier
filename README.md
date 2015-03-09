@@ -13,6 +13,7 @@ FIXME: explanation
     $ java -jar gitlab-review-notifier-0.1.0-standalone.jar [args]
 
 To convert \*.wav to \*.mp3 in Linux:
+
     $ avconv -i c4_explode1.wav c4_explode1.mp3
 
 ## Options

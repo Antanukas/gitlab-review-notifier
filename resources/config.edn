@@ -1,15 +1,24 @@
-{ :review-expiration-min 300
+{ :review-expiration-min 500
 
   :new-review-check-interval-sec 60
-  :expired-review-check-interval-sec 1800
+  :expired-review-check-interval-sec 3600
   :config-reload-interval-sec 5
 
-  :projects-to-track #{"CustomerDataServices" "EsbAdapterCommons" "EsbOracleStreamAdapter" "EsbO3gAdapter" 
-                       "EsbCdsAdapter" "EsbStreamIntegration" "DevOps" "CdsMapper" "EsbO3gStreamAdapter" 
-                       "EsbCdsStreamAdapter"}
+  :projects-to-track #{"CustomerDataServices" "EsbAdapterCommons" "EsbOracleStreamAdapter" "EsbO3gAdapter"
+                       "EsbCdsAdapter" "EsbStreamIntegration" "DevOps" "CdsMapper" "EsbO3gStreamAdapter"
+                       "EsbCdsStreamAdapter", "Public Web"}
 
   :gitlab-url "http://online-tooling.omnitel.lan/"
   :gitlab-token "rJt6dNGWJ29e9Nfbq2po"
+
+  :tts-language "en"
+  :tts-url "http://www.translate.google.com/translate_tts"
+
+  :tmp-dir "/tmp"
+
+  :http-use-proxy true
+  :http-proxy-host "janus.omnitel.lan"
+  :http-proxy-port 8080
 
   :log-level :info
 }
