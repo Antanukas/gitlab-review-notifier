@@ -1,10 +1,12 @@
-{ :review-expiration-min 120
+{ :review-expiration-min 300
 
-  :new-review-check-interval-sec 10
-  :expired-review-check-interval-sec 10
+  :new-review-check-interval-sec 60
+  :expired-review-check-interval-sec 1800
   :config-reload-interval-sec 5
 
-  :projects-to-track #{"CustomerDataServices"}
+  :projects-to-track #{"CustomerDataServices" "EsbAdapterCommons" "EsbOracleStreamAdapter" "EsbO3gAdapter" 
+                       "EsbCdsAdapter" "EsbStreamIntegration" "DevOps" "CdsMapper" "EsbO3gStreamAdapter" 
+                       "EsbCdsStreamAdapter"}
 
   :gitlab-url "http://online-tooling.omnitel.lan/"
   :gitlab-token "rJt6dNGWJ29e9Nfbq2po"

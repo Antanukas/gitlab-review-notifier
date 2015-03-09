@@ -11,7 +11,7 @@
 (def prev-merge-request-ids (atom #{}))
 
 (defn get-merge-requests []
-  (let [is-project-to-track? (fn [project] (:projects-to-track @ctx/config) (:name project))]
+  (let [is-project-to-track? (fn [project] (contains? (:projects-to-track @ctx/config) (:name project)))]
     (->> (gitlab/get-projects)
          (filter is-project-to-track?)
          (map :id)
