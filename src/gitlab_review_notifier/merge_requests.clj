@@ -4,11 +4,37 @@
             [gitlab-review-notifier.predicates :as pred]
             [gitlab-review-notifier.context :as ctx]
             [gitlab-review-notifier.tts :as tts]
-            [taoensso.timbre :as timbre]))
+            [taoensso.timbre :as timbre]
+            [clojure.java.io :as io]))
 (timbre/refer-timbre)
 
 ;atom to check for new mrs based on previous
 (def prev-merge-request-ids (atom #{}))
+
+(defn- play-file-in-loop [file]
+  (future (while (not (Thread/interrupted))
+            (player/play-file! file))))
+
+(defn- speak! [phrase]
+  (try
+    (tts/speak! phrase) ;google likes to reject my messages
+    (catch Exception e (error e))))
+
+(defn- speak-new-request! [mr]
+  (speak! (str "Reviewed, new merge request created by " (get-in mr [:author :name]) " must be.  Hmmmmmm.")))
+(defn- speak-expired-request! [mr]
+  (speak! (str "Review merge request created by " (get-in mr [:author :name]) ", somebody must.")))
+(defn- speak-standup-time! [] (speak! "Time for daily standup, is it.  Hmmmmmm."))
+(defn- speak-near-standup-time! [] (speak! "Near, daily standup time is.  Yeesssssss."))
+
+(def music-lock (Object.)) ;won't play simulteniously
+(defn- do-with-music [f]
+  (locking music-lock
+    (let [backgroud-music (play-file-in-loop (io/resource "sw-theme-volume.mp3"))]
+      (try
+        (f)
+        ;TODO future cancel doesn't block so background music still plays when this exists
+        (finally (future-cancel backgroud-music))))))
 
 (defn get-merge-requests []
   (let [is-project-to-track? (fn [project] (contains? (:projects-to-track @ctx/config) (:name project)))]
@@ -18,30 +44,17 @@
          (map gitlab/get-open-merge-requests)
          (flatten))))
 
-(defn- speak! [mr phrase-fn]
-  (let [mr-title (:title mr)
-        mr-author (get-in mr [:author :name])
-        phrase (phrase-fn mr-title mr-author)]
-    (try
-      (tts/speak! phrase) ;google likes to reject my messages
-      (catch Exception e (error e)))))
-
-(defn- speak-new-request! [mr]
-  (speak! mr (fn [mr-title mr-author] (str "New merge request " mr-title " was opened by " mr-author))))
-(defn- speak-expired-request! [mr]
-  (speak! mr (fn [mr-title mr-author] (str "Please review " mr-title " merge request opened by " mr-author " now!!!"))))
-
-
 (defn remember-merge-requests! [merge-requests]
   (reset! prev-merge-request-ids (set (map :id merge-requests))))
+
 
 (defn check-for-new-mrs! []
   (debug "Entering check-for-new-mrs!")
   (let [merge-requests (get-merge-requests)
         new-merge-requests (filter (pred/is-new-mr? @prev-merge-request-ids) merge-requests)]
     (remember-merge-requests! merge-requests)
-    (doseq [mr new-merge-requests] (speak-new-request! mr)))
-  (debug "Finished check-for-new-mrs!"))
+    (if-not (empty? new-merge-requests) (do-with-music #(doseq [mr new-merge-requests] (speak-new-request! mr))))
+    (debug "Finished check-for-new-mrs!")))
 
 (defn check-for-expired-mrs! []
   (debug "Entering check-for-expired-mrs!")
@@ -49,6 +62,15 @@
         expired-mrs (filter pred/is-expired-mr? merge-requests)]
     (info "Found" (count expired-mrs) "expired reviews!!!")
     (debug "Found reviews: " (clojure.string/join "," (map :title expired-mrs)))
-    (doseq [mr expired-mrs] (speak-expired-request! mr))
+    (if-not (empty? expired-mrs) (do-with-music #(doseq [mr expired-mrs] (speak-expired-request! mr))))
     (debug "Finished check-for-expired-mrs!")))
 
+(defn notify-about-standup-time! []
+  (info "Notifying about standup")
+  (speak-standup-time!)
+  (info "Standup notification finished"))
+
+(defn notify-about-near-standup! []
+  (info "Notifying about near standup")
+  (speak-near-standup-time!)
+  (info "Notification about near standup finished"))

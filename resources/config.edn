@@ -1,8 +1,9 @@
-{ :review-expiration-min 500
+{ :review-expiration-min 960
 
   :new-review-check-interval-sec 60
   :expired-review-check-interval-sec 3600
   :config-reload-interval-sec 5
+  :standup-time [9 30] ;hh mm
 
   :projects-to-track #{"CustomerDataServices" "EsbAdapterCommons" "EsbOracleStreamAdapter" "EsbO3gAdapter"
                        "EsbCdsAdapter" "EsbStreamIntegration" "DevOps" "CdsMapper" "EsbO3gStreamAdapter"
@@ -11,8 +12,12 @@
   :gitlab-url "http://online-tooling.omnitel.lan/"
   :gitlab-token "rJt6dNGWJ29e9Nfbq2po"
 
-  :tts-language "en"
-  :tts-url "http://www.translate.google.com/translate_tts"
+  :google-tts-language "en"
+  :google-tts-url "http://www.translate.google.com/translate_tts"
+
+  :acapela-tts-url "http://vaas.acapela-group.com/Services/Synthesizer"
+  :acapela-tts-usr "EVAL_9050668"
+  :acapela-tts-psw "o1qgnkjy"
 
   :tmp-dir "/tmp"
 
