@@ -10,10 +10,18 @@
 
 ;atom to check for new mrs based on previous
 (def prev-merge-request-ids (atom #{}))
+(def is-playing-file-in-loop? (atom false))
 
+
+;TODO why future  cacel doest work i java 8?
 (defn- play-file-in-loop [file]
-  (future (while (not (Thread/interrupted))
-            (player/play-file! file))))
+  (reset! is-playing-file-in-loop? true)
+  (future (while @is-playing-file-in-loop? (player/play-file! file))))
+
+(defn- stop-play-file-in-loop [fut]
+  (reset! is-playing-file-in-loop? false)
+  (future-cancel fut))
+
 
 (defn- speak! [phrase]
   (try
@@ -34,7 +42,7 @@
       (try
         (f)
         ;TODO future cancel doesn't block so background music still plays when this exists
-        (finally (future-cancel backgroud-music))))))
+        (finally (stop-play-file-in-loop backgroud-music))))))
 
 (defn get-merge-requests []
   (let [is-project-to-track? (fn [project] (contains? (:projects-to-track @ctx/config) (:name project)))]

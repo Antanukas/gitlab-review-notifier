@@ -45,7 +45,7 @@
         form-params {:form-params {:req_asw_type "STREAM" :cl_login "EVAL_VAAS"
                                    :cl_app (:acapela-tts-usr @ctx/config)
                                    :cl_pwd (:acapela-tts-psw @ctx/config)
-                                   :req_voice "willlittlecreature22k"
+                                   :req_voice "alyona22k"
                                    :req_text phrase :req_snd_type "MP3"}}]
     (speech-to-file! url form-params (partial client/post))))
 
