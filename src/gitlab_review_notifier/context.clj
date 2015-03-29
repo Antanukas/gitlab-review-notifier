@@ -3,13 +3,12 @@
             [clojure.edn :as edn]
             [clojure.java.io :as io]
             [taoensso.timbre :as timbre]))
-
 ;pool used for scheduling tasks. E.g checking for new merge requests
 (def scheduler-pool (scheduler/mk-pool))
 
 (def config-file
   (or (io/file (System/getProperty "config.location")) (io/resource "config.edn")))
-(timbre/info "Config location: " config-file)
+
 (def config (atom {}))
 
 (defn load-config []

@@ -3,9 +3,8 @@
             [clj-time.format :as f]
             [clojure.java.io :as io]
             [clj-http.client :as client]
-            [gitlab-review-notifier.context :as ctx]
-            [taoensso.timbre :as timbre]))
-(timbre/refer-timbre)
+            [gitlab-review-notifier.context :as ctx]))
+(taoensso.timbre/refer-timbre)
 
 (defn- gitlab-url []
   (:gitlab-url @ctx/config))

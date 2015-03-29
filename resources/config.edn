@@ -3,6 +3,9 @@
   :new-review-check-interval-sec 60
   :expired-review-check-interval-sec 3600
   :config-reload-interval-sec 5
+  :failed-build-check-interval-sec 35
+  :reminder-failed-build-interval-sec 1800
+
   :standup-time [9 30] ;hh mm
 
   :projects-to-track #{"CustomerDataServices" "EsbAdapterCommons" "EsbOracleStreamAdapter" "EsbO3gAdapter"
@@ -11,6 +14,9 @@
 
   :gitlab-url "http://online-tooling.omnitel.lan/"
   :gitlab-token "rJt6dNGWJ29e9Nfbq2po"
+
+  :jenkins-url "http://online-ci.omnitel.lan:8080/jenkins/"
+  :jenkins-view-to-monitor "WATCHED-BUILDS"
 
   :google-tts-language "en"
   :google-tts-url "http://www.translate.google.com/translate_tts"

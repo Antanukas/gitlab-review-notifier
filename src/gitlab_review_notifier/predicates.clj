@@ -13,3 +13,6 @@
 
 (defn is-new-mr? [prev-mrs]
   (fn [mr] (not (contains? prev-mrs (:id mr)))))
+
+(defn is-build-with-status? [expected-status]
+  (fn [build] (= (:status build) expected-status)))
