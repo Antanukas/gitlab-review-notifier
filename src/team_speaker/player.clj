@@ -1,4 +1,4 @@
-(ns gitlab-review-notifier.player
+(ns team-speaker.player
   (:require [clojure.java.io :as io]))
 
 (defn play-file!

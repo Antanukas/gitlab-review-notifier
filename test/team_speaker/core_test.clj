@@ -1,6 +1,6 @@
-(ns gitlab-review-notifier.core-test
+(ns team-speaker.core-test
   (:require [clojure.test :refer :all]
-            [gitlab-review-notifier.core :refer :all]))
+            [team-speaker.core :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."

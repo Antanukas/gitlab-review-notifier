@@ -1,9 +1,9 @@
-(ns gitlab-review-notifier.tts
-  (:require [clj-http.client :as client]
-            [gitlab-review-notifier.context :as ctx]
+(ns team-speaker.tts
+  (:require [team-speaker.context :as ctx]
+            [team-speaker.player :as player]
+            [clj-http.client :as client]
             [taoensso.timbre :as timbre]
-            [clojure.java.io :as io]
-            [gitlab-review-notifier.player :as player]))
+            [clojure.java.io :as io]))
 (taoensso.timbre/refer-timbre)
 
 (defn- replace-map

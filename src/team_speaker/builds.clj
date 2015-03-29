@@ -1,8 +1,8 @@
-(ns gitlab-review-notifier.builds
-  (:require [gitlab-review-notifier.jenkins-client :as jenkins]
-            [gitlab-review-notifier.context :as ctx]
-            [gitlab-review-notifier.predicates :as p]
-            [gitlab-review-notifier.speaker :as s]))
+(ns team-speaker.builds
+  (:require [team-speaker.jenkins-client :as jenkins]
+            [team-speaker.context :as ctx]
+            [team-speaker.predicates :as p]
+            [team-speaker.speaker :as s]))
 (taoensso.timbre/refer-timbre)
 
 (def failed-builds-atom (atom #{}))

@@ -1,8 +1,8 @@
-(ns gitlab-review-notifier.core
+(ns team-speaker.core
   (:gen-class)
-  (:require [gitlab-review-notifier.context :as ctx]
-            [gitlab-review-notifier.merge-requests :as mrs]
-            [gitlab-review-notifier.builds :as builds]
+  (:require [team-speaker.context :as ctx]
+            [team-speaker.merge-requests :as mrs]
+            [team-speaker.builds :as builds]
             [overtone.at-at :as scheduler]
             [clj-time.core :as t]
             [clj-time.local :as l]))

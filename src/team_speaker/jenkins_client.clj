@@ -1,5 +1,5 @@
-(ns gitlab-review-notifier.jenkins-client
-  (:require [gitlab-review-notifier.context :as ctx]
+(ns team-speaker.jenkins-client
+  (:require [team-speaker.context :as ctx]
             [clj-time.core :as t]
             [clj-http.client :as client]))
 

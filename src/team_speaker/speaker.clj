@@ -1,6 +1,6 @@
-(ns gitlab-review-notifier.speaker
-  (:require [gitlab-review-notifier.tts :as tts]
-            [gitlab-review-notifier.player :as player]
+(ns team-speaker.speaker
+  (:require [team-speaker.tts :as tts]
+            [team-speaker.player :as player]
             [clojure.java.io :as io]))
 (taoensso.timbre/refer-timbre)
 

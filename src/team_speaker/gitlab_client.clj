@@ -1,9 +1,9 @@
-(ns gitlab-review-notifier.gitlab-client
+(ns team-speaker.gitlab-client
   (:require [clj-time.core :as t]
             [clj-time.format :as f]
             [clojure.java.io :as io]
             [clj-http.client :as client]
-            [gitlab-review-notifier.context :as ctx]))
+            [team-speaker.context :as ctx]))
 (taoensso.timbre/refer-timbre)
 
 (defn- gitlab-url []

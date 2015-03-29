@@ -1,5 +1,5 @@
-(ns gitlab-review-notifier.predicates
-  (:require [gitlab-review-notifier.context :as ctx]
+(ns team-speaker.predicates
+  (:require [team-speaker.context :as ctx]
             [clj-time.core :as t]))
 
 (defn- is-mr-created-at-after-cofigure? [mr cfg-expire-key]

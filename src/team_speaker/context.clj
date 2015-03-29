@@ -1,4 +1,4 @@
-(ns gitlab-review-notifier.context
+(ns team-speaker.context
   (:require [overtone.at-at :as scheduler]
             [clojure.edn :as edn]
             [clojure.java.io :as io]
