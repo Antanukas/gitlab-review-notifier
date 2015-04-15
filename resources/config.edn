@@ -1,4 +1,4 @@
-{ :review-expiration-min 960
+{ :review-expiration-min 500
 
   :new-review-check-interval-sec 60
   :expired-review-check-interval-sec 3600
@@ -7,6 +7,7 @@
   :reminder-failed-build-interval-sec 1800
 
   :standup-time [9 30] ;hh mm
+  :work-start [8 30] :work-end [18 00]
 
   :projects-to-track #{"CustomerDataServices" "EsbAdapterCommons" "EsbOracleStreamAdapter" "EsbO3gAdapter"
                        "EsbCdsAdapter" "EsbStreamIntegration" "DevOps" "CdsMapper" "EsbO3gStreamAdapter"

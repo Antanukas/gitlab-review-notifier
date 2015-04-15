@@ -2,7 +2,6 @@
   (:require [team-speaker.context :as ctx]
             [team-speaker.player :as player]
             [clj-http.client :as client]
-            [taoensso.timbre :as timbre]
             [clojure.java.io :as io]))
 (taoensso.timbre/refer-timbre)
 

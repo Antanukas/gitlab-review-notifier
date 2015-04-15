@@ -11,6 +11,7 @@
 (def is-currently-paying? (atom false))
 ;won't play simulteniously
 (def music-lock (Object.))
+(def speak-lock (Object.))
 
 ;TODO why future  cacel doest work i java 8?
 (defn- play-file-in-loop [file]
@@ -35,6 +36,7 @@
         (finally (stop-play-file-in-loop backgroud-music))))))
 
 (defn speak! [phrase]
-  (try
-    (tts/speak! phrase) ;google likes to reject my messages
-    (catch Exception e (error e))))
+  (locking speak-lock
+    (try
+      (tts/speak! phrase)                                   ;google likes to reject my messages
+      (catch Exception e (error e)))))
