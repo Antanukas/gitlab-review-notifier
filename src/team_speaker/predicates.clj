@@ -17,4 +17,5 @@
   (fn [mr] (not (contains? prev-mrs (:id mr)))))
 
 (defn is-build-with-status? [expected-status]
-  (fn [build] (= (:status build) expected-status)))
+;TODO any better ideas?
+  (fn [build] (or (= (:status build) expected-status) (and (nil? (:status build)) (= expected-status "SUCCESS")))))
