@@ -8,7 +8,10 @@
                  [clj-time "0.9.0"]
                  [com.taoensso/timbre "3.4.0"]
                  [clj-http "1.0.1"]
-                 [im.chit/cronj "1.4.1"]]
-  :main ^:skip-aot team-speaker.main-shim
+                 [im.chit/cronj "1.4.1"]
+                 [compojure "1.3.3"]
+                 [ring/ring-defaults "0.1.4"]
+                 [ring/ring-json "0.3.1"]]
   :target-path "target/%s"
-  :profiles {:uberjar {:aot [team-speaker.main-shim]}})
+  :plugins [[lein-ring "0.9.3"]]
+  :ring {:handler team-speaker.app/app})

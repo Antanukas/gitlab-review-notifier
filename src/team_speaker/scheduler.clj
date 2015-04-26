@@ -1,4 +1,4 @@
-(ns team-speaker.core
+(ns team-speaker.scheduler
   ;(:gen-class)
   (:require
     [team-speaker.calendar :as cal]
@@ -8,6 +8,9 @@
     [clj-time.local :as l]
     [cronj.core :as sched]))
 (taoensso.timbre/refer-timbre)
+
+(def ^:private scheduler (atom {}))
+
 (defn- wrap-with-exception-logging [f]
   (fn [t opts] (try (f t opts) (catch Exception e (error e "Task execution failed.")))))
 (defn- wrap-with-working-time [f]
@@ -19,7 +22,7 @@
 (defn- wrap-no-args [f]
   (fn [t opts] (f)))
 
-(defn- create-task [id cron handler]
+(defn create-task [id cron handler]
   {:id id
    :handler (wrap-with-exception-logging
               (wrap-with-working-time
@@ -27,12 +30,19 @@
    :schedule cron
    :opts {}})
 
+(defn get-scheduler [] @scheduler)
+
+(defn- to-current-schedule [conj-schedule]
+  (let [task (:task conj-schedule)]
+    (hash-map
+      :schedule (:schedule conj-schedule)
+      :id (:id task)
+      :last-exec @(:last-exec task))))
+
+(defn get-current-schedule []
+  (map to-current-schedule (:scheduler @scheduler)))
+
 (defn init []
-  (info "Starting application...")
-  (info "Loading config")
-  (ctx/load-config)
-  (info "Rememberig current merge requests")
-  (mrs/remember-merge-requests! (mrs/get-merge-requests))
   (let [config-reload-cron (:config-reload-cron @ctx/config)
         new-review-check-cron (:new-review-check-cron @ctx/config)
         expired-review-check-cron (:expired-review-check-cron @ctx/config)
@@ -48,5 +58,7 @@
                   (create-task "failed-builds" failed-build-check-cron builds/check-for-new-failed-builds!)
                   (create-task "reminder-failed-builds" reminder-failed-build-cron builds/notify-about-failed-builds)]
         cj (sched/cronj :entries schedule)]
-    (sched/start! cj)))
+       (do
+         (reset! scheduler cj)
+         (sched/start! cj))))
 

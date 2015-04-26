@@ -1,4 +1,4 @@
-{ :review-expiration-min 1
+{ :review-expiration-min 500
 
   :new-review-check-cron "/60 * * * * * *"
   :expired-review-check-cron "0 0 /1 * * * *"
