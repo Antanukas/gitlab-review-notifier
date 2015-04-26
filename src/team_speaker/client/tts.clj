@@ -1,7 +1,7 @@
-(ns team-speaker.tts
+(ns team-speaker.client.tts
   (:require
-    [team-speaker.context :as ctx]
-    [team-speaker.player :as player]
+    [team-speaker.core.context :as ctx]
+    [team-speaker.client.player :as player]
     [clj-http.client :as client]
     [clojure.java.io :as io]))
 (taoensso.timbre/refer-timbre)
@@ -48,6 +48,7 @@
                                    :req_text phrase :req_snd_type "MP3"}}]
     (speech-to-file! url form-params (partial client/post))))
 
+;TODO not resposibility of client
 (defn speak! [phrase]
   (let [phrase-normalized (replace-lithuanian (clojure.string/lower-case phrase))
         speech-file (acapela-speech-to-file! phrase-normalized)]

@@ -1,7 +1,7 @@
-(ns team-speaker.speaker
+(ns team-speaker.core.speaker
   (:require
-    [team-speaker.tts :as tts]
-    [team-speaker.player :as player]
+    [team-speaker.client.tts :as tts]
+    [team-speaker.client.player :as player]
     [clojure.java.io :as io]))
 (taoensso.timbre/refer-timbre)
 

@@ -1,7 +1,7 @@
-(ns team-speaker.predicates
+(ns team-speaker.core.predicates
   (:require
-    [team-speaker.context :as ctx]
-    [team-speaker.calendar :as wd]))
+    [team-speaker.core.context :as ctx]
+    [team-speaker.core.calendar :as wd]))
 
 ;Predicates to check review request
 (defn is-expired-mr? [mr]

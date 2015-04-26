@@ -1,4 +1,4 @@
-(ns team-speaker.context
+(ns team-speaker.core.context
   (:require
     [clojure.edn :as edn]
     [clojure.java.io :as io]

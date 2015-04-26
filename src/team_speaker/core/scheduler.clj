@@ -1,10 +1,10 @@
-(ns team-speaker.scheduler
+(ns team-speaker.core.scheduler
   ;(:gen-class)
   (:require
-    [team-speaker.calendar :as cal]
-    [team-speaker.context :as ctx]
-    [team-speaker.merge-requests :as mrs]
-    [team-speaker.builds :as builds]
+    [team-speaker.core.calendar :as cal]
+    [team-speaker.core.context :as ctx]
+    [team-speaker.core.merge-requests :as mrs]
+    [team-speaker.core.builds :as builds]
     [clj-time.local :as l]
     [cronj.core :as sched]))
 (taoensso.timbre/refer-timbre)

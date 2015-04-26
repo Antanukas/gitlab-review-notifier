@@ -1,8 +1,9 @@
-(ns team-speaker.gitlab-client
+(ns team-speaker.client.gitlab-client
   (:require
     [clj-time.format :as f]
     [clj-http.client :as client]
-    [team-speaker.context :as ctx]))
+    ;TODO circular dep
+    [team-speaker.core.context :as ctx]))
 (taoensso.timbre/refer-timbre)
 
 (defn- gitlab-url []

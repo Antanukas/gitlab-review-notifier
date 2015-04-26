@@ -1,6 +1,7 @@
-(ns team-speaker.jenkins-client
+(ns team-speaker.client.jenkins-client
   (:require
-    [team-speaker.context :as ctx]
+    ;TODO circular dep
+    [team-speaker.core.context :as ctx]
     [clj-http.client :as client]))
 
 (defn- get-jenkins [path]

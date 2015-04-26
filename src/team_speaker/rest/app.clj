@@ -1,13 +1,13 @@
-(ns team-speaker.app
+(ns team-speaker.rest.app
   (:require
     [compojure.core :refer :all]
     [ring.middleware.defaults :refer [wrap-defaults api-defaults]]
     [ring.middleware.json :refer [wrap-json-response wrap-json-body]]
-    [team-speaker.scheduler :as s]
+    [team-speaker.core.scheduler :as s]
     [cheshire.generate :as json]
-    [team-speaker.merge-requests :as mrs]
-    [team-speaker.context :as ctx]
-    [team-speaker.routes :as routes]))
+    [team-speaker.core.merge-requests :as mrs]
+    [team-speaker.core.context :as ctx]
+    [team-speaker.rest.routes :as routes]))
 (taoensso.timbre/refer-timbre)
 
 (defn joda-encoder [c jsonGenerator]

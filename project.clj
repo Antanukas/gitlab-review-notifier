@@ -14,4 +14,4 @@
                  [ring/ring-json "0.3.1"]]
   :target-path "target/%s"
   :plugins [[lein-ring "0.9.3"]]
-  :ring {:handler team-speaker.app/app})
+  :ring {:handler team-speaker.rest.app/app})

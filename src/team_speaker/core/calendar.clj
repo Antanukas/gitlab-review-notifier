@@ -1,4 +1,4 @@
-(ns team-speaker.calendar
+(ns team-speaker.core.calendar
   (:require
     [clj-time.core :as t]
     [clj-time.local :as l]))

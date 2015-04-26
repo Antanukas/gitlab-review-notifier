@@ -1,4 +1,4 @@
-(ns team-speaker.player
+(ns team-speaker.client.player
   (:require [clojure.java.io :as io]))
 
 (defn play-file!

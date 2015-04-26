@@ -1,9 +1,9 @@
-(ns team-speaker.routes
+(ns team-speaker.rest.routes
   (:require
     [compojure.core :refer :all]
     [compojure.route :as route]
     [ring.util.response :refer [response]]
-    [team-speaker.scheduler :as s]))
+    [team-speaker.core.scheduler :as s]))
 
 (defroutes app-routes
            (GET "/" [] (response {:greeting "Hello world"}))
