@@ -14,6 +14,18 @@
 (def music-lock (Object.))
 (def speak-lock (Object.))
 
+(defn- replace-map
+  "given an input string and a hash-map, returns a new string with all
+  keys in map found in input replaced with the value of the key"
+  [s m]
+  (clojure.string/replace
+    s
+    (re-pattern (apply str (interpose "|" (map #(java.util.regex.Pattern/quote %) (keys m)))))
+    m))
+(defn- replace-lithuanian [text]
+  ;because google tts doesn't work very well in english mode with lithuanian names
+  (replace-map text {"ą" "a" "č" "c" "ę" "e" "ė" "e" "į" "i" "š" "s" "ų" "u" "ū" "u" "ž" "z"}))
+
 ;TODO why future  cacel doest work i java 8?
 (defn- play-file-in-loop [file]
   (reset! is-play-another-iteration? true)
@@ -28,6 +40,14 @@
   (reset! is-play-another-iteration? false)
   (future-cancel fut))
 
+;TODO not resposibility of client
+(defn speak! [phrase]
+  (let [phrase-normalized (replace-lithuanian (clojure.string/lower-case phrase))
+        speech-file (tts/acapela-speech-to-file! phrase-normalized)]
+    (player/play-file! speech-file)
+    (io/delete-file speech-file)))
+
+
 (defn do-with-music [f]
   (locking music-lock
     (let [backgroud-music (play-file-in-loop (io/resource "sw-theme-volume.mp3"))]
@@ -39,5 +59,5 @@
 (defn speak! [phrase]
   (locking speak-lock
     (try
-      (tts/speak! phrase)                                   ;google likes to reject my messages
+      (speak! phrase) ;google likes to reject my messages
       (catch Exception e (error e)))))

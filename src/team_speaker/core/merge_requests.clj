@@ -17,10 +17,10 @@
 
 (defn get-merge-requests []
   (let [is-project-to-track? (fn [project] (contains? (:projects-to-track @ctx/config) (:name project)))]
-    (->> (gitlab/get-projects)
+    (->> (gitlab/get-projects (:gitlab-url @ctx/config) (:gitlab-token @ctx/config))
          (filter is-project-to-track?)
          (map :id)
-         (map gitlab/get-open-merge-requests)
+         (map (partial gitlab/get-open-merge-requests (:gitlab-url @ctx/config) (:gitlab-token @ctx/config)))
          (flatten))))
 
 (defn remember-merge-requests! [merge-requests]

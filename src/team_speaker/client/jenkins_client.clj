@@ -1,12 +1,8 @@
 (ns team-speaker.client.jenkins-client
-  (:require
-    ;TODO circular dep
-    [team-speaker.core.context :as ctx]
-    [clj-http.client :as client]))
+  (:require [clj-http.client :as client]))
 
-(defn- get-jenkins [path]
-  (let [url (str (:jenkins-url @ctx/config) path)]
-      (:body (client/get url {:as :json}))))
+(defn- get-jenkins [url path]
+  (:body (client/get (str url path) {:as :json})))
 
-(defn get-view-builds [view-name]
-  (get-jenkins (str "view/" view-name "/api/json?pretty=true&tree=jobs[name,builds[result,number,culprits[fullName]]]")))
+(defn get-view-builds [url view-name]
+  (get-jenkins url (str "view/" view-name "/api/json?pretty=true&tree=jobs[name,builds[result,number,culprits[fullName]]]")))

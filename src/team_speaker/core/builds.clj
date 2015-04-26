@@ -20,7 +20,7 @@
     {:name (:name b) :status (:result latest-build) :culprits culprit-names}))
 
 (defn- get-latest-build-statuses [view-name]
-  (->> (jenkins/get-view-builds view-name)
+  (->> (jenkins/get-view-builds (:jenkins-url @ctx/config) view-name)
        :jobs
        (map to-build-status)
        set))

@@ -1,5 +1,4 @@
 (ns team-speaker.core.scheduler
-  ;(:gen-class)
   (:require
     [team-speaker.core.calendar :as cal]
     [team-speaker.core.context :as ctx]

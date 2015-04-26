@@ -1,7 +1,7 @@
-{ :review-expiration-min 500
+{ :review-expiration-min 1
 
   :new-review-check-cron "/60 * * * * * *"
-  :expired-review-check-cron "0 0 /1 * * * *"
+  :expired-review-check-cron "/30 * * * * * *";"0 0 /1 * * * *"
   :config-reload-cron "/5 * * * * * *"
   :failed-build-check-cron "/35 * * * * * *"
   :reminder-failed-build-cron "0 /30 * * * * *"
