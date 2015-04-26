@@ -1,12 +1,13 @@
-{ :review-expiration-min 500
+{ :review-expiration-min 1
 
-  :new-review-check-interval-sec 60
-  :expired-review-check-interval-sec 3600
-  :config-reload-interval-sec 5
-  :failed-build-check-interval-sec 35
-  :reminder-failed-build-interval-sec 1800
+  :new-review-check-cron "/60 * * * * * *"
+  :expired-review-check-cron "0 0 /1 * * * *"
+  :config-reload-cron "/5 * * * * * *"
+  :failed-build-check-cron "/35 * * * * * *"
+  :reminder-failed-build-cron "0 /30 * * * * *"
+  :standup-cron "0 30 9 * * * *"
+  :near-standup-cron "0 28 9 * * * *"
 
-  :standup-time [9 30] ;hh mm
   :work-start [8 30] :work-end [18 00]
 
   :projects-to-track #{"CustomerDataServices" "EsbAdapterCommons" "EsbOracleStreamAdapter" "EsbO3gAdapter"

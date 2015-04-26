@@ -1,8 +1,9 @@
 (ns team-speaker.tts
-  (:require [team-speaker.context :as ctx]
-            [team-speaker.player :as player]
-            [clj-http.client :as client]
-            [clojure.java.io :as io]))
+  (:require
+    [team-speaker.context :as ctx]
+    [team-speaker.player :as player]
+    [clj-http.client :as client]
+    [clojure.java.io :as io]))
 (taoensso.timbre/refer-timbre)
 
 (defn- replace-map

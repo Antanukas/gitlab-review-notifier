@@ -1,8 +1,9 @@
 (ns team-speaker.builds
-  (:require [team-speaker.jenkins-client :as jenkins]
-            [team-speaker.context :as ctx]
-            [team-speaker.predicates :as p]
-            [team-speaker.speaker :as s]))
+  (:require
+    [team-speaker.jenkins-client :as jenkins]
+    [team-speaker.context :as ctx]
+    [team-speaker.predicates :as p]
+    [team-speaker.speaker :as s]))
 (taoensso.timbre/refer-timbre)
 
 (def failed-builds-atom (atom #{}))

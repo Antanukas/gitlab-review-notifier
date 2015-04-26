@@ -1,6 +1,7 @@
-(ns team-speaker.working-days
-  (:require [clj-time.core :as t]
-            [clj-time.local :as l]))
+(ns team-speaker.calendar
+  (:require
+    [clj-time.core :as t]
+    [clj-time.local :as l]))
 
 ;TODO working with local dates are pain.
 ;I guess I need new module for that

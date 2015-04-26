@@ -1,7 +1,7 @@
 (ns team-speaker.jenkins-client
-  (:require [team-speaker.context :as ctx]
-            [clj-time.core :as t]
-            [clj-http.client :as client]))
+  (:require
+    [team-speaker.context :as ctx]
+    [clj-http.client :as client]))
 
 (defn- get-jenkins [path]
   (let [url (str (:jenkins-url @ctx/config) path)]

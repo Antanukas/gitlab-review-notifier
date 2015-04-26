@@ -1,9 +1,8 @@
 (ns team-speaker.gitlab-client
-  (:require [clj-time.core :as t]
-            [clj-time.format :as f]
-            [clojure.java.io :as io]
-            [clj-http.client :as client]
-            [team-speaker.context :as ctx]))
+  (:require
+    [clj-time.format :as f]
+    [clj-http.client :as client]
+    [team-speaker.context :as ctx]))
 (taoensso.timbre/refer-timbre)
 
 (defn- gitlab-url []

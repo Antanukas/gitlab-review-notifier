@@ -1,7 +1,8 @@
 (ns team-speaker.speaker
-  (:require [team-speaker.tts :as tts]
-            [team-speaker.player :as player]
-            [clojure.java.io :as io]))
+  (:require
+    [team-speaker.tts :as tts]
+    [team-speaker.player :as player]
+    [clojure.java.io :as io]))
 (taoensso.timbre/refer-timbre)
 
 ;this flag is needed to track if multiple sources need to play music with background

@@ -1,8 +1,9 @@
 (ns team-speaker.merge-requests
-  (:require [team-speaker.gitlab-client :as gitlab]
-            [team-speaker.predicates :as pred]
-            [team-speaker.context :as ctx]
-            [team-speaker.speaker :as s]))
+  (:require
+    [team-speaker.gitlab-client :as gitlab]
+    [team-speaker.predicates :as pred]
+    [team-speaker.context :as ctx]
+    [team-speaker.speaker :as s]))
 (taoensso.timbre/refer-timbre)
 ;atom to check for new mrs based on previous
 (def prev-merge-request-ids (atom #{}))

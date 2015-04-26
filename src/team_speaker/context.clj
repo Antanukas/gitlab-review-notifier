@@ -1,10 +1,8 @@
 (ns team-speaker.context
-  (:require [overtone.at-at :as scheduler]
-            [clojure.edn :as edn]
-            [clojure.java.io :as io]
-            [taoensso.timbre :as timbre]))
-;pool used for scheduling tasks. E.g checking for new merge requests
-(def scheduler-pool (scheduler/mk-pool))
+  (:require
+    [clojure.edn :as edn]
+    [clojure.java.io :as io]
+    [taoensso.timbre :as timbre]))
 
 (def config-file
   (or (io/file (System/getProperty "config.location")) (io/resource "config.edn")))

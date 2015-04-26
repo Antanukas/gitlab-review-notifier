@@ -5,10 +5,10 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [javazoom/jlayer "1.0.1"]
-                 [overtone/at-at "1.2.0"]
                  [clj-time "0.9.0"]
                  [com.taoensso/timbre "3.4.0"]
-                 [clj-http "1.0.1"]]
-  :main ^:skip-aot team-speaker.core
+                 [clj-http "1.0.1"]
+                 [im.chit/cronj "1.4.1"]]
+  :main ^:skip-aot team-speaker.main-shim
   :target-path "target/%s"
-  :profiles {:uberjar {:aot :all}})
+  :profiles {:uberjar {:aot [team-speaker.main-shim]}})
