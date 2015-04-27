@@ -41,7 +41,7 @@
   (future-cancel fut))
 
 ;TODO not resposibility of client
-(defn speak! [phrase]
+(defn- speak-internal! [phrase]
   (let [phrase-normalized (replace-lithuanian (clojure.string/lower-case phrase))
         speech-file (tts/acapela-speech-to-file! phrase-normalized)]
     (player/play-file! speech-file)
@@ -59,5 +59,5 @@
 (defn speak! [phrase]
   (locking speak-lock
     (try
-      (speak! phrase) ;google likes to reject my messages
+      (speak-internal! phrase) ;google likes to reject my messages
       (catch Exception e (error e)))))

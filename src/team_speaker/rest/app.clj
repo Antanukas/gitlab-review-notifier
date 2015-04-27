@@ -7,7 +7,8 @@
     [cheshire.generate :as json]
     [team-speaker.core.merge-requests :as mrs]
     [team-speaker.core.context :as ctx]
-    [team-speaker.rest.routes :as routes]))
+    [team-speaker.rest.routes :as routes]
+    [ring.adapter.jetty :as jetty]))
 (taoensso.timbre/refer-timbre)
 
 (defn joda-encoder [c jsonGenerator]
@@ -31,3 +32,5 @@
         (wrap-json-response)
         (wrap-defaults api-defaults))))
 
+(defn -main []
+(jetty/run-jetty app {:port 3000})) 

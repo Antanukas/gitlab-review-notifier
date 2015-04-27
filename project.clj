@@ -11,7 +11,12 @@
                  [im.chit/cronj "1.4.1"]
                  [compojure "1.3.3"]
                  [ring/ring-defaults "0.1.4"]
-                 [ring/ring-json "0.3.1"]]
+                 [ring/ring-json "0.3.1"]
+                 [ring/ring-jetty-adapter "1.3.2"]]
   :target-path "target/%s"
   :plugins [[lein-ring "0.9.3"]]
-  :ring {:handler team-speaker.rest.app/app})
+  :ring {:handler team-speaker.rest.app/app}
+  :main team-speaker.rest.main-shim
+  :profiles {
+    :uberjar {:aot [team-speaker.rest.main-shim]}
+  })
