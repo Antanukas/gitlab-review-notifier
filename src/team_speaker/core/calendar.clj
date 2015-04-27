@@ -37,8 +37,7 @@
       hours
       minutes)))
 
-;TODO remove 6 7
-(def working-day? #{1 2 3 4 5 6 7})
+(def working-day? #{1 2 3 4 5})
 (defn is-working-moment? [moment-date [start-h start-m] [end-h end-m]]
   (and
     (working-day? (t/day-of-week moment-date))
