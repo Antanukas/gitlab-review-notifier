@@ -1,7 +1,7 @@
-{ :review-expiration-min 1
+{ :review-expiration-min 900
 
   :new-review-check-cron "/60 * * * * * *"
-  :expired-review-check-cron "/30 * * * * * *";"0 0 /1 * * * *"
+  :expired-review-check-cron "0 0 /1 * * * *"
   :config-reload-cron "/5 * * * * * *"
   :failed-build-check-cron "/35 * * * * * *"
   :reminder-failed-build-cron "0 /30 * * * * *"
@@ -24,8 +24,8 @@
   :google-tts-url "http://www.translate.google.com/translate_tts"
 
   :acapela-tts-url "http://vaas.acapela-group.com/Services/Synthesizer"
-  :acapela-tts-usr "EVAL_9050668"
-  :acapela-tts-psw "o1qgnkjy"
+  :acapela-tts-usr "EVAL_3403566"
+  :acapela-tts-psw "16d4vzu8"
 
   :tmp-dir "/tmp"
 
