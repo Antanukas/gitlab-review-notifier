@@ -14,10 +14,10 @@
                        "EsbCdsAdapter" "EsbStreamIntegration" "DevOps" "CdsMapper" "EsbO3gStreamAdapter"
                        "EsbCdsStreamAdapter", "Public Web"}
 
-  :gitlab-url "http://online-tooling.omnitel.lan/"
+  :gitlab-url "http://online-tooling/"
   :gitlab-token "rJt6dNGWJ29e9Nfbq2po"
 
-  :jenkins-url "http://online-ci.omnitel.lan:8080/jenkins/"
+  :jenkins-url "http://online-ci:8080/jenkins/"
   :jenkins-view-to-monitor "WATCHED-BUILDS"
 
   :google-tts-language "en"
@@ -30,7 +30,7 @@
   :tmp-dir "/tmp"
 
   :http-use-proxy true
-  :http-proxy-host "janus.omnitel.lan"
+  :http-proxy-host "janus"
   :http-proxy-port 8080
 
   :log-level :info
