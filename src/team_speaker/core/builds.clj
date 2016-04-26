@@ -25,14 +25,9 @@
        (map to-build-status)
        set))
 
-(defn- union-minus-intersection [s1 s2]
-  (let [union (clojure.set/union s1 s2)
-        intersec (clojure.set/intersection s1 s2)]
-     (clojure.set/difference union intersec)))
-
 (defn- get-failed-builds [view-name]
   (let [latest-builds (get-latest-build-statuses view-name)]
-    (set (filter (complement (p/is-build-with-status? "SUCCESS")) latest-builds))))
+    (set (filter (p/is-build-with-status? "UNSTABLE" "FAILURE") latest-builds))))
 
 (defn notify-about-failed-builds
   ([] (notify-about-failed-builds @failed-builds-atom))
@@ -45,6 +40,6 @@
 (defn check-for-new-failed-builds! []
   (let [prev-failed-builds @failed-builds-atom
         latest-failed-builds (get-failed-builds (:jenkins-view-to-monitor @ctx/config))
-        new-failed-builds (union-minus-intersection prev-failed-builds latest-failed-builds)]
+        new-failed-builds (clojure.set/difference latest-failed-builds prev-failed-builds )]
     (reset! failed-builds-atom latest-failed-builds)
     (notify-about-failed-builds new-failed-builds)))

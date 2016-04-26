@@ -16,6 +16,5 @@
 (defn is-new-mr? [prev-mrs]
   (fn [mr] (not (contains? prev-mrs (:id mr)))))
 
-(defn is-build-with-status? [expected-status]
-;TODO any better ideas?
-  (fn [build] (or (= (:status build) expected-status) (and (nil? (:status build)) (= expected-status "SUCCESS")))))
+(defn is-build-with-status? [expected-status & args]
+  (fn [build] ((set (conj args expected-status)) (:status build))))
